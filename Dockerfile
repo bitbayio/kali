@@ -20,7 +20,7 @@ RUN apt-get install -y --no-install-recommends --allow-unauthenticated \
       lxde x11vnc xvfb autocutsel \
       xfonts-base lwm xterm \
       nginx \
-      python-pip python-dev build-essential \
+      python-dev build-essential \
       mesa-utils libgl1-mesa-dri \
       dbus-x11 x11-utils \
       && apt-get -y autoclean \
@@ -35,6 +35,10 @@ RUN apt-get update && apt-cache search kali-linux && apt-get install -y \
 
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /bin/tini
 RUN chmod +x /bin/tini
+
+# manual pip installation, python-pip not avail via apt (04-2020)
+RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+RUN python get-pip.py
 
 ADD image /
 RUN pip install setuptools wheel && pip install -r /usr/lib/web/requirements.txt
