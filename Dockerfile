@@ -30,7 +30,7 @@ RUN apt-get install -y --no-install-recommends --allow-unauthenticated \
 # For installing Kali metapackages
 RUN apt-get update && apt-cache search kali-linux && apt-get install -y \
       kali-desktop-xfce \
-      kali-linux-full
+      kali-linux-everything
 
 
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /bin/tini
