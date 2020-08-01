@@ -43,6 +43,13 @@ RUN python get-pip.py
 ADD image /
 RUN pip install setuptools wheel && pip install -r /usr/lib/web/requirements.txt
 
+#   install hackerEnv
+RUN cd /opt/ &&\
+    git clone https://github.com/abdulr7mann/hackerEnv.git &&\
+    cd /opt/hackerEnv &&\
+    chmod +x hackerEnv &&\
+    ln -s /opt/hackerEnv/hackerEnv /usr/local/bin/
+
 EXPOSE 80
 
 WORKDIR /root
